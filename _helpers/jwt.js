@@ -14,7 +14,10 @@ function jwt() {
             '/users',
             '/article/create',
             '/article',
-            '/article/random'
+            '/article/random',
+            '/timer',
+            '/timer/create',
+            '/timer/update'
         ]
     });
 }

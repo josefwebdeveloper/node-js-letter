@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const config = require('config.json');
-const articleModel = require('./article.model');
-const articleService = require('./article.service');
+const timerModel = require('./timer.model');
+const timerService = require('./timer.service');
 // const mongoConnectionString = process.env.MONGODB_URI || config.connectionString;
 // const agenda = new Agenda({db: {address: mongoConnectionString}});
 //
@@ -15,9 +15,9 @@ const articleService = require('./article.service');
 //     await agenda.every('1 seconds', 'console');
 //
 // })();
-router.get('/', getAll);
+router.get('/', getTimer);
 router.post('/create', create);
-router.get('/random', getRandom);
+// router.post('/update', update);
 router.get('/:articleId', getById);
 // router.put('/:articleId', updateById);
 // router.delete('/:articleId', deleteById);
@@ -37,22 +37,17 @@ module.exports = router;
 // }
 
 
-function getRandom(req, res, next) {
-    console.log('getRandom contr');
-    articleService.getRandom()
-        .then(article => article ? res.json({data: {article: article}}) : res.sendStatus(404))
-        .catch(err => next(err));
-}
+
 function getById(req, res, next) {
     articleService.getById(req.params.id)
         .then(article => article ? res.json({data: {article: article}}) : res.sendStatus(404))
         .catch(err => next(err));
 }
-function getAll(req, res, next) {
-    console.log('getRandom contr');
+function getTimer(req, res, next) {
+    console.log('getTimer contr');
 
-    articleService.getAll()
-        .then(articles => res.json({status: 'success', message: 'Articles found!!!', data: {articles: articles}}))
+    timerService.getTimer()
+        .then(timer => res.json({status: 'success', message: 'timer load!!!', data: {timer: timer}}))
         .catch(err => next(err));
 }
 // function getAll(req, res, next) {
@@ -95,7 +90,7 @@ function getAll(req, res, next) {
 //     });
 // }
 function create(req, res, next) {
-    articleService.create(req.body)
+    timerService.create(req.body)
         .then(() => res.json({status: 'success', message: 'Movie added successfully!!!', data: null}))
         .catch(err => next(err));
 }
