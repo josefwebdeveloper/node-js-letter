@@ -3,7 +3,7 @@ const router = express.Router();
 const config = require('config.json');
 const articleModel = require('./article.model');
 const articleService = require('./article.service');
-const timerService = require('./timer.service');
+const timerService = require('../timer/timer.service');
 
 router.get('/', getAll);
 router.post('/create', create);
