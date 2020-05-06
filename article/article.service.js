@@ -29,17 +29,9 @@ async function getRandom() {
 
 
 async function create(articleParam) {
-    // validate
-    // if (await User.findOne({ username: userParam.username })) {
-    //     throw 'Username "' + userParam.username + '" is already taken';
-    // }
 
     const article = new Article(articleParam);
     article.createdDate = new Date();
-    // hash password
-    // if (articleParam.password) {
-    //     user.hash = bcrypt.hashSync(userParam.password, 10);
-    // }
 
     // save user
     await article.save();

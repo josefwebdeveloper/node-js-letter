@@ -29,7 +29,6 @@ async function create() {
     await _delete();
     const timer = new Timer();
     timer.startTime = new Date();
-    // save user
     await timer.save();
 }
 

@@ -80,18 +80,10 @@ function getTimer(req, res, next) {
 
 
 
-// function deleteById(req, res, next) {
-//     articleModel.findByIdAndRemove(req.params.movieId, function (err, movieInfo) {
-//         if (err)
-//             next(err);
-//         else {
-//             res.json({status: 'success', message: 'Movie deleted successfully!!!', data: null});
-//         }
-//     });
-// }
+
 function create(req, res, next) {
     timerService.create(req.body)
-        .then(() => res.json({status: 'success', message: 'Movie added successfully!!!', data: null}))
+        .then(() => res.json({status: 'success', message: 'Timer created successfully!!!', data: null}))
         .catch(err => next(err));
 }
 // function create(req, res, next) {

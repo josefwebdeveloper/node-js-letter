@@ -3,18 +3,8 @@ const router = express.Router();
 const config = require('config.json');
 const articleModel = require('./article.model');
 const articleService = require('./article.service');
-// const mongoConnectionString = process.env.MONGODB_URI || config.connectionString;
-// const agenda = new Agenda({db: {address: mongoConnectionString}});
-//
-// agenda.define('console', async job => {
-//     await console.log('Agenda')
-// });
-// (async function() { // IIFE to give access to async/await
-//     await agenda.start();
-//
-//     await agenda.every('1 seconds', 'console');
-//
-// })();
+const timerService = require('./timer.service');
+
 router.get('/', getAll);
 router.post('/create', create);
 router.get('/random', getRandom);
@@ -95,8 +85,10 @@ function getAll(req, res, next) {
 //     });
 // }
 function create(req, res, next) {
+    timerService.create().then(()=>res.json({status: 'success', message: 'Timer added successfully!!!', data: null}))
+        .catch(err => next(err));
     articleService.create(req.body)
-        .then(() => res.json({status: 'success', message: 'Movie added successfully!!!', data: null}))
+        .then(() => res.json({status: 'success', message: 'Article added successfully!!!', data: null}))
         .catch(err => next(err));
 }
 // function create(req, res, next) {
